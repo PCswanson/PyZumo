@@ -17,7 +17,7 @@ DIR_L.value = False
 DIR_R.value = False
 
 
-def leftMotorDir(dir):
+def setLeftDir(dir):
 
     if dir == "F":
         DIR_L.value = False
@@ -28,7 +28,7 @@ def leftMotorDir(dir):
     else:
         print("Error in direction command")
 
-def rightMotorDir(dir):
+def setRightDir(dir):
     if dir == "F":
         DIR_R.value = False
         print("right forward")
@@ -68,5 +68,3 @@ def setRightSpeed(speed):
         rightMotorDir("F")
 
     PWM_R.duty_cycle = speed*655
-
-

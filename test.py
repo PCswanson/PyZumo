@@ -27,4 +27,3 @@ for i in range(0,3):
 
 robot.setLeftSpeed(0)
 robot.setRightSpeed(0)
-
