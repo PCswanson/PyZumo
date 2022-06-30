@@ -45,48 +45,45 @@ def setLeftSpeed(speed):
     #send 0-100 to set left motor speed
     if speed < 0:
         speed = -speed
-        leftMotorDir("R")
+        setLeftDir("R")
 
     elif speed > 100:
         speed = 100
-        leftMotorDir("F")
+        setLeftDir("F")
 
     else:
-        leftMotorDir("F")
+        setLeftDir("F")
 
-    PWM_L.duty_cycle = speed*655
+    PWM_L.duty_cycle = int(speed*655)
 
 def setRightSpeed(speed):
     #send 0-100 to set right motor speed
     if speed < 0:
         speed = -speed
-        rightMotorDir("R")
+        setRightDir("R")
 
     elif speed > 100:
         speed = 100
-        rightMotorDir("F")
+        setRightDir("F")
 
     else:
-        rightMotorDir("F")
+        setRightDir("F")
 
-    PWM_R.duty_cycle = speed*655
+    PWM_R.duty_cycle = int(speed*655)
 
 def sTurnRight(speed):
     #send speed 0-100 to spin right
 
-    setRightDir(R)
-    setRightSpeed(speed)
-    setLeftDir(F)
+    setRightSpeed(-speed)
     setLeftSpeed(speed)
 
 
 def sTurnLeft(speed):
     #send speed 0-100 to spin left
 
-    setRightDir(F)
+
     setRightSpeed(speed)
-    setLeftDir(R)
-    setLeftSpeed(speed)
+    setLeftSpeed(-speed)
 
 
 def cTurnRight(radius,speed):
@@ -94,11 +91,10 @@ def cTurnRight(radius,speed):
     radiusO = radius + 8
     Ci = 2 * math.pi * radius
     Co = 2 * math.pi * radiusO
+    #error check div by 0
     ratio = Co/Ci
-    setLeftDir(F)
     setLeftSpeed(speed)
-    setRightDir(F)
-    setRightSpeed(speed * ratio)
+    setRightSpeed(int(speed * ratio))
 
 
 def cTurnLeft(radius,speed):
@@ -106,10 +102,9 @@ def cTurnLeft(radius,speed):
     radiusO = radius + 8
     Ci = 2 * math.pi * radius
     Co = 2 * math.pi * radiusO
+    #error check div by 0
     ratio = Co/Ci
-    setRightDir(F)
     setRightSpeed(speed)
-    setLeftDir(F)
-    setLeftSpeed(speed * ratio)
+    setLeftSpeed(int(speed * ratio))
 
-    
+
